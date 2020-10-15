@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Video;
 using UnityObject = UnityEngine.Object;
 
 namespace BMS {
@@ -87,10 +87,10 @@ namespace BMS {
             if(!bmpObjects.TryGetValue(id, out res))
                 return null;
 #if !UNITY_ANDROID
-            if(res.texture is MovieTexture) {
-                var movTexture = res.texture as MovieTexture;
-                movTexture.Play();
-                playingMovieTextures.Add(movTexture);
+            if(res.texture is VideoPlayer) {
+                //var movTexture = res.texture as Texture;
+                //movTexture.Play();
+                //playingMovieTextures.Add(movTexture);
             } else if(res.value is MovieTextureHolder) {
 #else
             if(res.value is MovieTextureHolder) {

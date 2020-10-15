@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using UnityEngine;
+using UnityEngine.Video;
 
 namespace BMS {
     [Flags]
@@ -109,7 +110,7 @@ namespace BMS {
 
         SoundPlayer _soundPlayer;
 #if !UNITY_ANDROID
-        readonly HashSet<MovieTexture> playingMovieTextures = new HashSet<MovieTexture>();
+        readonly HashSet<VideoPlayer> playingMovieTextures = new HashSet<VideoPlayer>();
 #endif
         readonly HashSet<MovieTextureHolder> playingMovieTextureHolders = new HashSet<MovieTextureHolder>();
         readonly HashSet<int> handledChannels = new HashSet<int>();
@@ -331,7 +332,7 @@ namespace BMS {
                 if(_isPaused) {
                     preOffset = timePosition;
 #if !UNITY_ANDROID
-                    var temp = new HashSet<MovieTexture>();
+                    var temp = new HashSet<VideoPlayer>();
                     foreach(var movTexture in playingMovieTextures)
                         if(movTexture.isPlaying) movTexture.Pause();
                         else temp.Add(movTexture);
